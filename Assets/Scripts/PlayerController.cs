@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -48,15 +49,25 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement * speed);
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("PickUp"))
+        if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
             count = count + 1;
-            
+
             SetCountText();
         }
+
+        if (other.gameObject.CompareTag("PickUp2"))
+        {    
+            other.gameObject.SetActive(false);
+            count = count + 5;
+
+
+                SetCountText();
+            }
+        }
+
     }
-}
